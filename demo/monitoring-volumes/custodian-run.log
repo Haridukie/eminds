@@ -1,0 +1,17 @@
+2023-04-20 16:56:27,942 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-04-20 16:56:36,110 - custodian.serverless - INFO - Publishing custodian policy lambda function custodian-monitoring-volumes
+2023-05-03 14:51:16,715 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 15:04:46,199 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 15:18:35,179 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 15:28:24,890 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 15:29:49,020 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 15:30:51,899 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 16:03:51,966 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 16:13:17,865 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 16:28:09,319 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 16:35:56,348 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 16:54:15,576 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 16:55:00,784 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 16:55:32,621 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 17:17:04,802 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1
+2023-05-03 17:31:30,783 - custodian.policy - INFO - Provisioning policy lambda: monitoring-volumes region: ap-south-1

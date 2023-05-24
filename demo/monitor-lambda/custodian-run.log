@@ -1,0 +1,10 @@
+2023-05-03 18:22:35,201 - custodian.policy - INFO - Provisioning policy lambda: monitor-lambda region: ap-south-1
+2023-05-03 18:22:58,257 - custodian.serverless - INFO - Publishing custodian policy lambda function custodian-monitor-lambda
+2023-05-05 15:20:27,272 - custodian.policy - INFO - Provisioning policy lambda: monitor-lambda region: ap-south-1
+2023-05-05 15:24:24,937 - custodian.policy - INFO - Provisioning policy lambda: monitor-lambda region: ap-south-1
+2023-05-05 15:25:02,798 - custodian.policy - INFO - Provisioning policy lambda: monitor-lambda region: ap-south-1
+2023-05-05 15:27:38,475 - custodian.policy - INFO - Provisioning policy lambda: monitor-lambda region: ap-south-1
+2023-05-05 15:49:09,318 - custodian.policy - INFO - Provisioning policy lambda: monitor-lambda region: ap-south-1
+2023-05-05 15:49:46,468 - custodian.policy - INFO - Provisioning policy lambda: monitor-lambda region: ap-south-1
+2023-05-05 15:52:52,767 - custodian.policy - INFO - Provisioning policy lambda: monitor-lambda region: ap-south-1
+2023-05-05 15:54:02,684 - custodian.policy - INFO - Provisioning policy lambda: monitor-lambda region: ap-south-1

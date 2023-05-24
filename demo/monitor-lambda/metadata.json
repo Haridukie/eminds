@@ -1,0 +1,87 @@
+{
+  "policy": {
+    "name": "monitor-lambda",
+    "resource": "lambda",
+    "mode": {
+      "type": "cloudtrail",
+      "role": "arn:aws:iam::195916279774:role/Custodian",
+      "events": [
+        {
+          "source": "lambda.amazonaws.com",
+          "event": "UpdateFunctionCode20150331v2",
+          "ids": "requestParameters.functionName"
+        },
+        {
+          "source": "lambda.amazonaws.com",
+          "event": "CreateFunction20150331",
+          "ids": "requestParameters.functionName"
+        }
+      ],
+      "tags": {
+        "custodian-info": "mode=cloudtrail:version=0.9.23"
+      }
+    },
+    "actions": [
+      {
+        "type": "notify",
+        "template": "default",
+        "priority_header": "1",
+        "subject": "lambda change: ${action}",
+        "to": [
+          "hariveneno15@gmail.com"
+        ],
+        "transport": {
+          "type": "sqs",
+          "queue": "https://sqs.ap-south-1.amazonaws.com/195916279774/custodian_queue"
+        }
+      }
+    ]
+  },
+  "version": "0.9.23",
+  "execution": {
+    "id": "2fa1437e-ee52-4180-8adc-2a5d29b5201e",
+    "start": 1683282242.6687746,
+    "end_time": 1683282244.2043018,
+    "duration": 1.535527229309082
+  },
+  "config": {
+    "region": "ap-south-1",
+    "regions": [
+      "ap-south-1"
+    ],
+    "cache": "~/.cache/cloud-custodian.cache",
+    "profile": null,
+    "account_id": "195916279774",
+    "assume_role": null,
+    "external_id": null,
+    "log_group": null,
+    "tracer": null,
+    "metrics_enabled": null,
+    "metrics": null,
+    "output_dir": ".",
+    "cache_period": 15,
+    "dryrun": false,
+    "authorization_file": null,
+    "subparser": "run",
+    "config": null,
+    "configs": [
+      "lambdachange.yml"
+    ],
+    "policy_filters": [],
+    "resource_types": [],
+    "verbose": null,
+    "quiet": null,
+    "debug": false,
+    "skip_validation": false,
+    "command": "c7n.commands.run",
+    "vars": null
+  },
+  "sys-stats": {},
+  "api-stats": {
+    "lambda.GetFunction": 1,
+    "events.DescribeRule": 1,
+    "lambda.AddPermission": 1,
+    "events.ListTargetsByRule": 1
+  },
+  "metrics": []
+}

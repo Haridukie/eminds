@@ -1,0 +1,117 @@
+{
+  "policy": {
+    "name": "monitoring-volumes",
+    "resource": "ebs",
+    "mode": {
+      "type": "cloudtrail",
+      "role": "arn:aws:iam::195916279774:role/Custodian",
+      "events": [
+        {
+          "source": "ec2.amazonaws.com",
+          "event": "CreateVolume",
+          "ids": "responseElements.volumeId"
+        },
+        {
+          "source": "ec2.amazonaws.com",
+          "event": "AttachVolume",
+          "ids": "responseElements.volumeId"
+        },
+        {
+          "source": "ec2.amazonaws.com",
+          "event": "DetachVolume",
+          "ids": "responseElements.volumeId"
+        },
+        {
+          "source": "ec2.amazonaws.com",
+          "event": "DeleteVolume",
+          "ids": "requestParameters.volumeId"
+        },
+        {
+          "source": "ec2.amazonaws.com",
+          "event": "ModifyVolume",
+          "ids": "responseElements.volumeId"
+        }
+      ],
+      "tags": {
+        "custodian-info": "mode=cloudtrail:version=0.9.23"
+      }
+    },
+    "filters": [
+      {
+        "type": "value",
+        "key": "tag:Custodian",
+        "value": "present"
+      }
+    ],
+    "actions": [
+      {
+        "type": "tag",
+        "key": "Environment1",
+        "value": "Production1"
+      },
+      {
+        "type": "notify",
+        "template": "default",
+        "priority_header": "1",
+        "subject": "EBS volume status changed in AWS account",
+        "to": [
+          "hariveneno15@gmail.com"
+        ],
+        "transport": {
+          "type": "sqs",
+          "queue": "https://sqs.ap-south-1.amazonaws.com/195916279774/custodian_queue"
+        },
+        "msg_body": "\nThis is to inform you that the following event was triggered in your AWS account:\n\n                                  \nEvent Name: { event_name }\n\nResource: { resource_id }\n"
+      }
+    ]
+  },
+  "version": "0.9.23",
+  "execution": {
+    "id": "d355791d-8a5d-4caf-9e27-f53ca0415ff5",
+    "start": 1683115290.7676198,
+    "end_time": 1683115298.7172008,
+    "duration": 7.949580907821655
+  },
+  "config": {
+    "region": "ap-south-1",
+    "regions": [
+      "ap-south-1"
+    ],
+    "cache": "~/.cache/cloud-custodian.cache",
+    "profile": null,
+    "account_id": "195916279774",
+    "assume_role": null,
+    "external_id": null,
+    "log_group": null,
+    "tracer": null,
+    "metrics_enabled": null,
+    "metrics": null,
+    "output_dir": ".",
+    "cache_period": 15,
+    "dryrun": false,
+    "authorization_file": null,
+    "subparser": "run",
+    "config": null,
+    "configs": [
+      "monitoringvolume.yml"
+    ],
+    "policy_filters": [],
+    "resource_types": [],
+    "verbose": null,
+    "quiet": null,
+    "debug": false,
+    "skip_validation": false,
+    "command": "c7n.commands.run",
+    "vars": null
+  },
+  "sys-stats": {},
+  "api-stats": {
+    "lambda.GetFunction": 1,
+    "lambda.UpdateFunctionCode": 1,
+    "lambda.GetFunctionConfiguration": 2,
+    "events.DescribeRule": 1,
+    "lambda.AddPermission": 1,
+    "events.ListTargetsByRule": 1
+  },
+  "metrics": []
+}

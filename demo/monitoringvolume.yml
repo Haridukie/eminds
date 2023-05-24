@@ -1,0 +1,61 @@
+policies:
+  - name: monitoring-volumes
+    resource: ebs
+    mode:
+      type: cloudtrail
+      role: arn:aws:iam::195916279774:role/Custodian
+      events:
+        - source: ec2.amazonaws.com
+          event: CreateVolume
+          ids: responseElements.volumeId
+
+        - source: ec2.amazonaws.com
+          event: AttachVolume
+          ids: responseElements.volumeId
+        
+        - source: ec2.amazonaws.com
+          event: DetachVolume
+          ids: responseElements.volumeId
+        
+        - source: ec2.amazonaws.com
+          event: DeleteVolume
+          ids: requestParameters.volumeId
+        
+        - source: ec2.amazonaws.com
+          event: ModifyVolume
+          ids: responseElements.volumeId
+    filters:
+      - type: value
+        key: "tag:Custodian"
+        value: present
+    actions:
+      - type: tag
+        key: Environment1
+        value: Production1
+      - type: notify
+        template: default
+        priority_header: '1'
+        subject: "EBS volume status changed in AWS account"
+        to:
+          - hariveneno15@gmail.com
+        transport:
+          type: sqs
+          queue: https://sqs.ap-south-1.amazonaws.com/195916279774/custodian_queue
+
+        msg_body: |
+    
+          This is to inform you that the following event was triggered in your AWS account:
+    
+                                            
+          Event Name: {{ event_name }}
+    
+          Resource: {{ resource_id }}
+
+  
+  
+          
+
+
+        
+  
+         

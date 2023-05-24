@@ -1,0 +1,109 @@
+{
+  "policy": {
+    "name": "filter-new-instances1",
+    "resource": "ec2",
+    "mode": {
+      "type": "cloudtrail",
+      "role": "arn:aws:iam::195916279774:role/Custodian",
+      "events": [
+        {
+          "source": "ec2.amazonaws.com",
+          "event": "StartInstances",
+          "ids": "responseElements.instancesSet.items[].instanceId"
+        },
+        {
+          "source": "ec2.amazonaws.com",
+          "event": "RunInstances",
+          "ids": "responseElements.instancesSet.items[].instanceId"
+        },
+        {
+          "source": "ec2.amazonaws.com",
+          "event": "StopInstances",
+          "ids": "responseElements.instancesSet.items[].instanceId"
+        }
+      ],
+      "tags": {
+        "custodian-info": "mode=cloudtrail:version=0.9.23"
+      }
+    },
+    "filters": [
+      {
+        "tag:Custodian": "present"
+      }
+    ],
+    "actions": [
+      {
+        "type": "tag",
+        "key": "Environment1",
+        "value": "Production1"
+      },
+      {
+        "type": "notify",
+        "template": "default",
+        "template_format": "html",
+        "priority_header": "1",
+        "subject": "hey mail sent from cloudtrail because of run/start/stop instance",
+        "to": [
+          "hariveneno15@gmail.com"
+        ],
+        "owner_absent_contact": [
+          "hariveneno15@gmail.com"
+        ],
+        "transport": {
+          "type": "sqs",
+          "queue": "https://sqs.ap-south-1.amazonaws.com/195916279774/custodian_queue"
+        }
+      }
+    ]
+  },
+  "version": "0.9.23",
+  "execution": {
+    "id": "f7143b26-2179-4baf-a5ad-2020f08273c4",
+    "start": 1683287950.1926596,
+    "end_time": 1683287961.98182,
+    "duration": 11.78916049003601
+  },
+  "config": {
+    "region": "ap-south-1",
+    "regions": [
+      "ap-south-1"
+    ],
+    "cache": "~/.cache/cloud-custodian.cache",
+    "profile": null,
+    "account_id": "195916279774",
+    "assume_role": null,
+    "external_id": null,
+    "log_group": null,
+    "tracer": null,
+    "metrics_enabled": null,
+    "metrics": null,
+    "output_dir": ".",
+    "cache_period": 15,
+    "dryrun": false,
+    "authorization_file": null,
+    "subparser": "run",
+    "config": null,
+    "configs": [
+      "cloudtrailupgraded.yml"
+    ],
+    "policy_filters": [],
+    "resource_types": [],
+    "verbose": null,
+    "quiet": null,
+    "debug": false,
+    "skip_validation": false,
+    "command": "c7n.commands.run",
+    "vars": null
+  },
+  "sys-stats": {},
+  "api-stats": {
+    "lambda.GetFunction": 1,
+    "lambda.UpdateFunctionCode": 1,
+    "lambda.GetFunctionConfiguration": 2,
+    "events.DescribeRule": 1,
+    "events.PutRule": 1,
+    "lambda.AddPermission": 1,
+    "events.ListTargetsByRule": 1
+  },
+  "metrics": []
+}

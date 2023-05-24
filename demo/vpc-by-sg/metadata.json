@@ -1,0 +1,68 @@
+{
+  "policy": {
+    "name": "vpc-by-sg",
+    "resource": "vpc",
+    "filters": [
+      {
+        "type": "security-group",
+        "key": "tag:Custodian",
+        "value": "first_ec2"
+      }
+    ]
+  },
+  "version": "0.9.23",
+  "execution": {
+    "id": "0b51519b-c1da-4b13-8ddd-9db1b945aad0",
+    "start": 1677502028.8900058,
+    "end_time": 1677502028.9034624,
+    "duration": 0.013456583023071289
+  },
+  "config": {
+    "region": "ap-south-1",
+    "regions": [
+      "ap-south-1"
+    ],
+    "cache": "~/.cache/cloud-custodian.cache",
+    "profile": null,
+    "account_id": "195916279774",
+    "assume_role": null,
+    "external_id": null,
+    "log_group": null,
+    "tracer": null,
+    "metrics_enabled": null,
+    "metrics": null,
+    "output_dir": ".",
+    "cache_period": 15,
+    "dryrun": true,
+    "authorization_file": null,
+    "subparser": "run",
+    "config": null,
+    "configs": [
+      "custodian.yml"
+    ],
+    "policy_filters": [],
+    "resource_types": [],
+    "verbose": null,
+    "quiet": null,
+    "debug": false,
+    "skip_validation": false,
+    "command": "c7n.commands.run",
+    "vars": null
+  },
+  "sys-stats": {},
+  "api-stats": {},
+  "metrics": [
+    {
+      "MetricName": "ResourceCount",
+      "Timestamp": "2023-02-27T18:17:08.902456",
+      "Value": 0,
+      "Unit": "Count"
+    },
+    {
+      "MetricName": "ResourceTime",
+      "Timestamp": "2023-02-27T18:17:08.902456",
+      "Value": 0.010011434555053711,
+      "Unit": "Seconds"
+    }
+  ]
+}

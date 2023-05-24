@@ -1,0 +1,23 @@
+policies:
+  - name: ec2-instance-events
+    resource: ec2
+    description: Detect EC2 instance launch and termination events via CloudTrail
+    mode:
+      type: cloudtrail
+      role : arn:aws:iam::195916279774:role/Custodian
+      events:
+        - RunInstances
+    actions:
+      - type: notify
+        template: default
+        template_format: 'html'
+        priority_header: '1'
+        subject: hey mail sent from the cloudtrail because of RunInstances/terminate 
+        to:
+          - hariveneno15@gmail.com
+        owner_absent_contact:
+          - hariveneno15@gmail.com
+        transport:
+          type: sqs
+          queue: https://sqs.ap-south-1.amazonaws.com/195916279774/custodian_queue
+      

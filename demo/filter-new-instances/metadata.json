@@ -1,0 +1,87 @@
+{
+  "policy": {
+    "name": "filter-new-instances",
+    "resource": "ec2",
+    "mode": {
+      "type": "cloudtrail",
+      "role": "arn:aws:iam::195916279774:role/Custodian",
+      "events": [
+        "RunInstances"
+      ],
+      "tags": {
+        "custodian-info": "mode=cloudtrail:version=0.9.23"
+      }
+    },
+    "filters": [
+      {
+        "tag:Custodian": "present"
+      }
+    ],
+    "actions": [
+      {
+        "type": "notify",
+        "template": "default",
+        "template_format": "html",
+        "priority_header": "1",
+        "subject": "hey mail sent from cloudtrail because of run instance",
+        "to": [
+          "hariveneno15@gmail.com"
+        ],
+        "owner_absent_contact": [
+          "hariveneno15@gmail.com"
+        ],
+        "transport": {
+          "type": "sqs",
+          "queue": "https://sqs.ap-south-1.amazonaws.com/195916279774/custodian_queue"
+        }
+      }
+    ]
+  },
+  "version": "0.9.23",
+  "execution": {
+    "id": "033f01d4-e368-44ff-b72a-fbab3ba15787",
+    "start": 1681298316.2160115,
+    "end_time": 1681298324.0938258,
+    "duration": 7.877814292907715
+  },
+  "config": {
+    "region": "ap-south-1",
+    "regions": [
+      "ap-south-1"
+    ],
+    "cache": "~/.cache/cloud-custodian.cache",
+    "profile": null,
+    "account_id": "195916279774",
+    "assume_role": null,
+    "external_id": null,
+    "log_group": null,
+    "tracer": null,
+    "metrics_enabled": null,
+    "metrics": null,
+    "output_dir": ".",
+    "cache_period": 15,
+    "dryrun": false,
+    "authorization_file": null,
+    "subparser": "run",
+    "config": null,
+    "configs": [
+      "cloudtrail.yml"
+    ],
+    "policy_filters": [],
+    "resource_types": [],
+    "verbose": null,
+    "quiet": null,
+    "debug": false,
+    "skip_validation": false,
+    "command": "c7n.commands.run",
+    "vars": null
+  },
+  "sys-stats": {},
+  "api-stats": {
+    "lambda.GetFunction": 1,
+    "events.DescribeRule": 1,
+    "lambda.AddPermission": 1,
+    "events.ListTargetsByRule": 1
+  },
+  "metrics": []
+}

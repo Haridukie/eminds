@@ -1,0 +1,4 @@
+queue_url : https://sqs.ap-south-1.amazonaws.com/195916279774/custodian_queue
+role: arn:aws:iam::195916279774:role/Custodian
+from_address : hariveneno15@gmail.com
+region: ap-south-1

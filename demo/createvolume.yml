@@ -1,0 +1,31 @@
+policies:
+  - name: monitoring-volumes
+    resource: ebs
+    mode:
+      type: cloudtrail
+      role: arn:aws:iam::195916279774:role/Custodian
+      events:
+        - source: ec2.amazonaws.com
+          event: CreateVolume
+          ids: responseElements.volumeId
+
+        - source: ec2.amazonaws.com
+          event: AttachVolume
+          ids: responseElements.volumeId
+    filters:
+      - type: value
+        key: "tag:Custodians"
+        value: present
+    actions:
+      - type: tag
+        key: Environment1
+        value: Production1
+      - type: notify
+        template: default
+        priority_header: '1'
+        subject: Volume created in AWS account
+        to:
+          - hariveneno15@gmail.com
+        transport:
+          type: sqs
+          queue: https://sqs.ap-south-1.amazonaws.com/195916279774/custodian_queue

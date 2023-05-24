@@ -1,0 +1,3 @@
+2023-04-12 16:22:24,627 - custodian.policy - INFO - Provisioning policy lambda: filter-new-instances region: ap-south-1
+2023-04-12 16:22:30,397 - custodian.serverless - INFO - Publishing custodian policy lambda function custodian-filter-new-instances
+2023-04-12 16:48:36,240 - custodian.policy - INFO - Provisioning policy lambda: filter-new-instances region: ap-south-1
